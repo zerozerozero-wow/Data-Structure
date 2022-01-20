@@ -7,9 +7,9 @@
 #include <malloc.h>
 
 /* 预定义常量及类型 */
-#define OK  1
-#define ERROR   0
-#define OVERFLOW    -2
+#define OK          1
+#define ERROR       0
+#define OVERFLOW   -2
 typedef int Status;
 
 /* 数据元素类型 */
