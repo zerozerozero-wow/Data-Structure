@@ -84,6 +84,21 @@ Status ListInsert(SqList *L, int i, ElemType e)
     return OK;
 }
 
+/**
+ * @brief 5.顺序表的删除
+ * @param L 一个存在的线性表
+ * @param i 需要删除的元素位置
+ * @retval OK   成功
+ */
+Status ListDelete(SqList *L, int i)
+{
+    /* 在顺序表L中删除第i个元素，i值的合法范围是1<=i<=L.length */
+    if((i<1) || (i>(*L).length-1)) return ERROR;
+    for(int j=i;j<=(*L).length-1;j++)
+        (*L).elem[j-1] = (*L).elem[j];
+    --(*L).length;
+    return OK;
+}
 
 int main() {
     printf("Hello, World!\n");
