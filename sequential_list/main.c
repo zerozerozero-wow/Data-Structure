@@ -1,7 +1,6 @@
 /**
  * 线性表的顺序表示和实现
  * @date 2022.1.20
- * @author 蒋海鹏
  */
 
 #include <stdio.h>
@@ -66,9 +65,23 @@ int LocateElem(SqList L, ElemType e)
     return 0;                               //查找失败，返回0
 }
 
+/**
+ * @brief 4.顺序表的插入
+ * @param L 已经存在的顺序表
+ * @param i 插入位置（1<=i<=n+1）
+ * @param e 要插入的新元素
+ * @retval OK   成功
+ */
 Status ListInsert(SqList *L, int i, ElemType e)
 {
-
+    /* 在顺序表L中的第i个位置之前插入新的元素e，i值的合法范围是1<=i<=L.length+1 */
+    if((i<1) || (i>(*L).length+1)) return ERROR;
+    if((*L).length == MAXSIZE) return ERROR;
+    for(int j=(*L).length-1;j>=i-1;j--)
+        (*L).elem[j+1] = (*L).elem[j];
+    (*L).elem[i-1] = e;
+    ++(*L).length;
+    return OK;
 }
 
 
