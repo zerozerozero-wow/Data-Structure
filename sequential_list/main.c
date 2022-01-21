@@ -32,7 +32,7 @@ typedef struct {
 Status InitList(SqList *L)
 {
     /* 构造一个空的顺序表L */
-    (*L).elem = malloc(sizeof(ElemType)*MAXSIZE);   //为顺序表分配一个大小为MAXSIZE的数组空间
+    (*L).elem = (ElemType *)malloc(sizeof(ElemType)*MAXSIZE);   //为顺序表分配一个大小为MAXSIZE的数组空间
     if(!(*L).elem) exit(OVERFLOW);                 //存储分配失败退出
     (*L).length = 0;                                     //空表长度为0
     return OK;
