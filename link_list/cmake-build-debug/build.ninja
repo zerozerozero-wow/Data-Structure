@@ -49,14 +49,20 @@ cmake_ninja_workdir = D$:/Documents/Projects/Data_structure/link_list/cmake-buil
 
 build cmake_object_order_depends_target_link_list: phony || CMakeFiles/link_list.dir
 
-build CMakeFiles/link_list.dir/main.c.obj: C_COMPILER__link_list_Debug D$:/Documents/Projects/Data_structure/link_list/main.c || cmake_object_order_depends_target_link_list
-  DEP_FILE = CMakeFiles\link_list.dir\main.c.obj.d
+build CMakeFiles/link_list.dir/linked_list.c.obj: C_COMPILER__link_list_Debug D$:/Documents/Projects/Data_structure/link_list/linked_list.c || cmake_object_order_depends_target_link_list
+  DEP_FILE = CMakeFiles\link_list.dir\linked_list.c.obj.d
   FLAGS = -g -std=gnu99
   OBJECT_DIR = CMakeFiles\link_list.dir
   OBJECT_FILE_DIR = CMakeFiles\link_list.dir
 
 build CMakeFiles/link_list.dir/circular_linked_list.c.obj: C_COMPILER__link_list_Debug D$:/Documents/Projects/Data_structure/link_list/circular_linked_list.c || cmake_object_order_depends_target_link_list
   DEP_FILE = CMakeFiles\link_list.dir\circular_linked_list.c.obj.d
+  FLAGS = -g -std=gnu99
+  OBJECT_DIR = CMakeFiles\link_list.dir
+  OBJECT_FILE_DIR = CMakeFiles\link_list.dir
+
+build CMakeFiles/link_list.dir/double_linked_list.c.obj: C_COMPILER__link_list_Debug D$:/Documents/Projects/Data_structure/link_list/double_linked_list.c || cmake_object_order_depends_target_link_list
+  DEP_FILE = CMakeFiles\link_list.dir\double_linked_list.c.obj.d
   FLAGS = -g -std=gnu99
   OBJECT_DIR = CMakeFiles\link_list.dir
   OBJECT_FILE_DIR = CMakeFiles\link_list.dir
@@ -69,7 +75,7 @@ build CMakeFiles/link_list.dir/circular_linked_list.c.obj: C_COMPILER__link_list
 #############################################
 # Link the executable link_list.exe
 
-build link_list.exe: C_EXECUTABLE_LINKER__link_list_Debug CMakeFiles/link_list.dir/main.c.obj CMakeFiles/link_list.dir/circular_linked_list.c.obj
+build link_list.exe: C_EXECUTABLE_LINKER__link_list_Debug CMakeFiles/link_list.dir/linked_list.c.obj CMakeFiles/link_list.dir/circular_linked_list.c.obj CMakeFiles/link_list.dir/double_linked_list.c.obj
   FLAGS = -g
   LINK_LIBRARIES = -lkernel32 -luser32 -lgdi32 -lwinspool -lshell32 -lole32 -loleaut32 -luuid -lcomdlg32 -ladvapi32
   OBJECT_DIR = CMakeFiles\link_list.dir
