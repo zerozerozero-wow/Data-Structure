@@ -1,22 +1,20 @@
 /**
- * 循环链表的实现和基本操作
+ * 循环链表
  * @date    2022-1-27
  */
 
-#include <stdio.h>
-#include <malloc.h>
+/**
+  * 循环单链表的操作和单链表基本一致，差别仅在于：当链表遍历时，判别当前指针p是否
+  * 指向表尾结点的终止条件不同。在单链表中，判别条件为 p!=NULL 或 p->next!=NULL,
+  * 而循环单链表的判别条件为 p!=L 或 p->next!=L
+*/
 
-#define OK          1
-#define ERROR       0
-#define OVERFLOW    -2
-typedef int Status;
-
-/* 数据域的数据元素定义 */
-typedef char ElemType;
-
-/* 结点结构体定义 */
-typedef struct LNode{
-    ElemType data;          //结点数据域
-    struct LNode *next;     //结点指针域
-}LNode, *LinkList;          //LinkList为指向结构体LNode的指针类型
-
+/**
+  * 在某些情况下，若在循环链表中设立尾指针而不设立头指针，可使一些操作简化。
+  * 例如将两个线性表合并成一个表时，仅需将第一个表的尾指针指向第二个表的第一个结点，
+  * 第二个表的尾指针指向第一个表的头结点，然后释放第二个表的头结点。
+  * 当线性表以循环链表作存储结构时，这个操作仅需改变两个头指针即可，主要语句段如下：
+  *     p = B->next->next;
+  *     B->next = A->next;
+  *     A->next = p;
+*/
