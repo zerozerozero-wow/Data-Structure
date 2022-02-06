@@ -8,10 +8,10 @@
 		},
 		"paths" : 
 		{
-			"cmake" : "D:/Software/Toolbox/apps/CLion/ch-0/213.6461.75/bin/cmake/win/bin/cmake.exe",
-			"cpack" : "D:/Software/Toolbox/apps/CLion/ch-0/213.6461.75/bin/cmake/win/bin/cpack.exe",
-			"ctest" : "D:/Software/Toolbox/apps/CLion/ch-0/213.6461.75/bin/cmake/win/bin/ctest.exe",
-			"root" : "D:/Software/Toolbox/apps/CLion/ch-0/213.6461.75/bin/cmake/win/share/cmake-3.21"
+			"cmake" : "D:/Software/Toolbox/apps/CLion/ch-0/213.6777.58/bin/cmake/win/bin/cmake.exe",
+			"cpack" : "D:/Software/Toolbox/apps/CLion/ch-0/213.6777.58/bin/cmake/win/bin/cpack.exe",
+			"ctest" : "D:/Software/Toolbox/apps/CLion/ch-0/213.6777.58/bin/cmake/win/bin/ctest.exe",
+			"root" : "D:/Software/Toolbox/apps/CLion/ch-0/213.6777.58/bin/cmake/win/share/cmake-3.21"
 		},
 		"version" : 
 		{
@@ -35,7 +35,7 @@
 			}
 		},
 		{
-			"jsonFile" : "cache-v2-493b12ade5a24d079f6f.json",
+			"jsonFile" : "cache-v2-ae10e2c522b02580c8f0.json",
 			"kind" : "cache",
 			"version" : 
 			{
@@ -44,7 +44,7 @@
 			}
 		},
 		{
-			"jsonFile" : "cmakeFiles-v1-c01001aeb40ad5987d9b.json",
+			"jsonFile" : "cmakeFiles-v1-5694db1ba52ab51af7e3.json",
 			"kind" : "cmakeFiles",
 			"version" : 
 			{
@@ -53,7 +53,7 @@
 			}
 		},
 		{
-			"jsonFile" : "toolchains-v1-6ab9d96bb86bfb556b36.json",
+			"jsonFile" : "toolchains-v1-05ede45854a6b2d1b8f9.json",
 			"kind" : "toolchains",
 			"version" : 
 			{
@@ -66,7 +66,7 @@
 	{
 		"cache-v2" : 
 		{
-			"jsonFile" : "cache-v2-493b12ade5a24d079f6f.json",
+			"jsonFile" : "cache-v2-ae10e2c522b02580c8f0.json",
 			"kind" : "cache",
 			"version" : 
 			{
@@ -76,7 +76,7 @@
 		},
 		"cmakeFiles-v1" : 
 		{
-			"jsonFile" : "cmakeFiles-v1-c01001aeb40ad5987d9b.json",
+			"jsonFile" : "cmakeFiles-v1-5694db1ba52ab51af7e3.json",
 			"kind" : "cmakeFiles",
 			"version" : 
 			{
@@ -96,7 +96,7 @@
 		},
 		"toolchains-v1" : 
 		{
-			"jsonFile" : "toolchains-v1-6ab9d96bb86bfb556b36.json",
+			"jsonFile" : "toolchains-v1-05ede45854a6b2d1b8f9.json",
 			"kind" : "toolchains",
 			"version" : 
 			{

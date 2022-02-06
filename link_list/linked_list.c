@@ -18,17 +18,19 @@ typedef char ElemType;
 typedef struct LNode {
     ElemType data;          //结点数据域
     struct LNode *next;     //结点指针域
-} LNode, *LinkList;          //LinkList为指向结构体LNode的指针类型
+} LNode, *LinkList;         //LinkList为指向结构体LNode的指针类型
 
 /**
  * @brief 1.单链表的初始化
  * @details 构造一个空的单链表L
- * @param L 头指针的引用
+ * @details 使用方法：InitList(&L);
+ * @param L 头指针的指针
  * @retval OK 成功
+ * @note 2022/2/6已验证
  */
-Status InitList(LinkList L) {
-    L = (LNode *) malloc(sizeof(LNode));      //生成新结点作为头结点，用头指针L指向头结点
-    L->next = NULL;                              //头结点指针域置空
+Status InitList(LinkList *L) {
+    *L = (LNode *) malloc(sizeof(LNode));      //生成新结点作为头结点，用头指针L指向头结点
+    (*L)->next = NULL;                              //头结点指针域置空
     return OK;
 }
 
@@ -127,34 +129,41 @@ Status ListDelete(LinkList L, int i) {
 
 /**
  * @brief 前插法创建单链表
- * @param L 头结点
+ * @details HOW TO USE : CreateList_H(&L, 结点个数);
+ * @param L 头指针的指针
  * @param n 元素个数
+ * @note 2022/2/6已验证
  */
-void CreateList_H(LinkList L, int n) {
-    L = (LinkList) malloc(sizeof(LNode));
-    L->next = NULL;
+void CreateList_H(LinkList *L, int n) {
+    /* 这两行等价于初始化单链表，即创建一个空的单链表L */
+    *L = (LinkList) malloc(sizeof(LNode));
+    (*L)->next = NULL;
 
     for (int i = 0; i < n; ++i) {
         LNode *p = (LNode *) malloc(sizeof(LNode));
-        scanf(&p->data);        //输入元素值赋给新结点*p的数据域
-        p->next = L->next;
-        L->next = p;
+        printf("Please enter a char\n");
+        scanf(" %c",&p->data);        //输入元素值赋给新结点*p的数据域
+        p->next = (*L)->next;
+        (*L)->next = p;
     }
 }
 
 /**
  * @brief 后插法创建单链表
+ * @details HOW TO USE : CreateList_R(&L, 结点个数);
  * @param L 头结点
  * @param n 元素个数
+ * @note 2022/2/6已验证
  */
-void CreateList_R(LinkList L, int n) {
-    L = (LinkList) malloc(sizeof(LNode));
-    L->next = NULL;
+void CreateList_R(LinkList *L, int n) {
+    *L = (LinkList) malloc(sizeof(LNode));
+    (*L)->next = NULL;
 
-    LNode *r = L;       //尾指针r指向头结点
+    LNode *r = *L;       //尾指针r指向头结点
     for (int i = 0; i < n; ++i) {
         LNode *p = (LNode *) malloc(sizeof(LNode));
-        scanf(&p->data);        //输入元素值赋给新结点*p的数据域
+        printf("Please enter a char\n");
+        scanf(" %c",&p->data);        //输入元素值赋给新结点*p的数据域
         p->next = NULL;
         r->next = p;
         r = p;
@@ -175,7 +184,7 @@ Status sll_insert(register LNode **L, ElemType new_value) {
      * 寻找正确的插入位置，方法是按序访问链表，直到到达一个其值大于或等于
      * 新值的结点
      */
-    while((current = *L) != NULL && current->data < new_value){
+    while ((current = *L) != NULL && current->data < new_value) {
         L = &current->next;
     }
 
@@ -183,7 +192,7 @@ Status sll_insert(register LNode **L, ElemType new_value) {
      * 为新结点分配内存，并把新值存储到新结点中，如果内存分配失败，函数返回ERROR
      */
     new = (LNode *) malloc(sizeof(LNode));
-    if(new == NULL)
+    if (new == NULL)
         return ERROR;
     new->data = new_value;
 
@@ -196,6 +205,13 @@ Status sll_insert(register LNode **L, ElemType new_value) {
 }
 
 int main() {
-    printf("Hello, World!\n");
+    /* 初始化单链表 */
+    LinkList L = NULL;
+    InitList(&L);
+
+    /* 前/后插法创建单链表 */
+    CreateList_R(&L,5);
+
+
     return 0;
 }
