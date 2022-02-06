@@ -50,14 +50,33 @@ Status mergeList1(LinkList A, LinkList *B);
 Status mergeList2(LinkList A, LinkList B);
 
 int main() {
-    int aTest[] = {1,3,5,7,9};
-    int bTest[] = {2,4,5,8,10};
+    int aTest[] = {1, 3, 5, 7, 9};
+    int bTest[] = {2, 4, 5, 8, 10};
 
-    for(int i=0;i<5;i++){
-        LinkList A = (LNode *)malloc(sizeof(LNode));
-        A->next = (LNode *)malloc(sizeof(LNode));
-        A->next->data
+    LinkList A = (LNode *) malloc(sizeof(LNode));
+    A->next = NULL;
+    LinkList B = (LNode *) malloc(sizeof(LNode));
+    B->next = NULL;
+
+    LNode *aTail = A;
+    LNode *bTail = B;
+
+    for (int i = 0; i < 5; i++) {
+        LNode *p = (LNode *) malloc(sizeof(LNode));
+        LNode *q = (LNode *) malloc(sizeof(LNode));
+
+        p->data = aTest[i];
+        p->next = NULL;
+        q->data = bTest[i];
+        q->next = NULL;
+
+        aTail->next = p;
+        bTail->next = q;
+
+        aTail = p;
+        bTail = q;
     }
+
 
     return 0;
 }
@@ -73,11 +92,11 @@ Status mergeList1(LinkList A, LinkList *B) {
     LNode *cp = A;
     LNode *max = (*B)->next;
 
-    while(cp->next != NULL) {
-        while(max->data >= cp->next->data){
+    while (cp->next != NULL) {
+        while (max->data >= cp->next->data) {
             cp = cp->next;
         }
-        if(max->data == cp->data) {
+        if (max->data == cp->data) {
             max = max->next;
             continue;
         }
