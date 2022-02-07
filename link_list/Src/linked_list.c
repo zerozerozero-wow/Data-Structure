@@ -200,3 +200,70 @@ Status sll_insert(register LNode **L, ElemType new_value) {
     *L = new;
     return OK;
 }
+
+/**
+ * @brief 获取链表的长度
+ * @param L 链表头指针
+ * @return 长度
+ */
+int ListLength(LinkList L) {
+    /* p指向首元结点 */
+    LNode *p = L->next;
+    int cnt = 0;
+
+    while(p){
+        p = p->next;
+        cnt++;
+    }
+    return cnt;
+}
+
+/**
+ * @brief 线性表的合并
+ * @details 将所有在线性表LB中但不在LA中的数据元素插入到LA中
+ * @param LA A链表头指针
+ * @param LB B链表头指针
+ * @note 时间复杂度为 O(m*n)
+ */
+void MergeList(LinkList LA, LinkList LB) {
+    int m = ListLength(LA);
+    int n = ListLength(LB);
+
+    for(int i=0;i<=n;i++){
+        ElemType e;
+        GetElem(LB,i,&e);           //取LB中第i个数据元素赋给e
+        if(!LocateElem(LA,e))          //LA中不存在和e相同的数据元素
+            ListInsert(LA,++m,e);   //将e插在LA的最后
+    }
+}
+
+/**
+ * @brief 链式有序表的合并
+ * @details 已知单链表 LA 和 LB 的元素按值非递减排列
+ *          归并 LA 和 LB 得到新的单链表 LC, LC 的元素也按值非递减排列
+ * @param LA A链表头指针
+ * @param LB B链表头指针
+ * @param LC 合并后的表
+ */
+void MergeList_L(LinkList LA, LinkList LB, LinkList *LC) {
+    /* pa和pb分别指向两个表的首元结点 */
+    LNode *pa = LA->next;
+    LNode *pb = LB->next;
+
+    *LC = LA;
+    LNode *pc = *LC;
+
+    while (pa && pb){
+        if(pa->data <= pb->data){
+            pc->next = pa;
+            pc = pa;
+            pa = pa->next;
+        }else{
+            pc->next = pb;
+            pc = pb;
+            pb = pb->next;
+        }
+    }
+    pc->next = pa?pa:pb;
+    free(LB);
+}

@@ -32,5 +32,8 @@ Status ListDelete(LinkList L, int i);
 void CreateList_H(LinkList *L, int n);
 void CreateList_R(LinkList *L, int n);
 Status sll_insert(register LNode **L, ElemType new_value);
+int ListLength(LinkList L);
+void MergeList(LinkList LA, LinkList LB);
+void MergeList_L(LinkList LA, LinkList LB, LinkList *LC);
 
 #endif
