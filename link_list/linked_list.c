@@ -26,7 +26,7 @@ typedef struct LNode {
  * @details 使用方法：InitList(&L);
  * @param L 头指针的指针
  * @retval OK 成功
- * @note 2022/2/6已验证
+ * @note 2022/2/6 已验证
  */
 Status InitList(LinkList *L) {
     *L = (LNode *) malloc(sizeof(LNode));      //生成新结点作为头结点，用头指针L指向头结点
@@ -38,10 +38,12 @@ Status InitList(LinkList *L) {
  * @brief 2.单链表的取值
  * @details 在带头结点的单链表L中根据序号i获取元素的值，用e返回L中第i个数据元素的值
  * @param L 头指针
- * @param i 位置序号
- * @param e 取出值
+ * @param i 位置序号,取值为1~max
+ * @param e 取出值容器的指针
  * @retval  ERROR i值不合法
  * @retval  OK 成功
+ * @note 平均时间复杂度为 O(n)
+ * @note 2022/2/7已验证
  */
 Status GetElem(LinkList L, int i, ElemType *e) {
     /* 初始化，p指向首元结点，计数器j初值赋值为1 */
@@ -63,6 +65,8 @@ Status GetElem(LinkList L, int i, ElemType *e) {
  * @param L 头指针
  * @param e 查找值
  * @return 查找成功返回值为e的结点地址p，查找失败p为NULL
+ * @note 平均时间复杂度为 O(n)
+ * @note 2022/2/7已验证
  */
 LNode *LocateElem(LinkList L, ElemType e) {
     /* 初始化，p指向首元结点 */
@@ -80,6 +84,7 @@ LNode *LocateElem(LinkList L, ElemType e) {
  * @param i 插入的位置序号
  * @param e 插入的数据
  * @return 成功返回OK
+ * @note 2022/2/7已验证
  */
 Status ListInsert(LinkList L, int i, ElemType e) {
     LNode *p = L;
@@ -106,6 +111,7 @@ Status ListInsert(LinkList L, int i, ElemType e) {
  * @param L 头指针
  * @param i 位置序号
  * @return 删除位置不合理返回ERROR，成功返回OK
+ * @note 2022/2/7已验证
  */
 Status ListDelete(LinkList L, int i) {
     LNode *p = L;
@@ -175,6 +181,7 @@ void CreateList_R(LinkList *L, int n) {
  * @param L 指向头指针的指针
  * @param new_value 要插入的值
  * @return 成功返回OK，失败返回ERROR
+ * @note 来源于《C和指针》
  */
 Status sll_insert(register LNode **L, ElemType new_value) {
     register LNode *current;
@@ -212,6 +219,23 @@ int main() {
     /* 前/后插法创建单链表 */
     CreateList_R(&L,5);
 
+    /* 单链表的取值 */
+    ElemType e;
+    GetElem(L,1,&e);
+    printf("%c",e);
+
+    /* 单链表的按值查找 */
+    LNode *p = LocateElem(L,'a');
+
+    /* 单链表的插入 */
+    ListInsert(L,1,'t');
+    GetElem(L,1,&e);
+    printf("%c",e);
+
+    /* 单链表的删除 */
+    ListDelete(L,1);
+    GetElem(L,1,&e);
+    printf("%c",e);
 
     return 0;
 }
