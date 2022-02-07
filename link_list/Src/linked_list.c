@@ -1,24 +1,10 @@
 /**
- * 单链表的实现和基本操作
+ * @file    linked_list.c
+ * @brief   单链表的实现和基本操作
  * @date    2022-1-21
  */
 
-#include <stdio.h>
-#include <malloc.h>
-
-#define OK          1
-#define ERROR       0
-#define OVERFLOW    -2
-typedef int Status;
-
-/* 数据域的数据元素定义 */
-typedef char ElemType;
-
-/* 结点结构体定义 */
-typedef struct LNode {
-    ElemType data;          //结点数据域
-    struct LNode *next;     //结点指针域
-} LNode, *LinkList;         //LinkList为指向结构体LNode的指针类型
+#include "..\Inc\linked_list.h"
 
 /**
  * @brief 1.单链表的初始化
@@ -213,33 +199,4 @@ Status sll_insert(register LNode **L, ElemType new_value) {
     new->next = current;
     *L = new;
     return OK;
-}
-
-int main() {
-    /* 初始化单链表 */
-    LinkList L = NULL;
-    InitList(&L);
-
-    /* 前/后插法创建单链表 */
-    CreateList_R(&L,5);
-
-    /* 单链表的取值 */
-    ElemType e;
-    GetElem(L,1,&e);
-    printf("%c",e);
-
-    /* 单链表的按值查找 */
-    LNode *p = LocateElem(L,'a');
-
-    /* 单链表的插入 */
-    ListInsert(L,1,'t');
-    GetElem(L,1,&e);
-    printf("%c",e);
-
-    /* 单链表的删除 */
-    ListDelete(L,1);
-    GetElem(L,1,&e);
-    printf("%c",e);
-
-    return 0;
 }
