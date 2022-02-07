@@ -84,6 +84,7 @@ LNode *LocateElem(LinkList L, ElemType e) {
  * @param i 插入的位置序号
  * @param e 插入的数据
  * @return 成功返回OK
+ * @note 平均时间复杂度为 O(n)
  * @note 2022/2/7已验证
  */
 Status ListInsert(LinkList L, int i, ElemType e) {
@@ -111,6 +112,7 @@ Status ListInsert(LinkList L, int i, ElemType e) {
  * @param L 头指针
  * @param i 位置序号
  * @return 删除位置不合理返回ERROR，成功返回OK
+ * @note 平均时间复杂度为 O(n)
  * @note 2022/2/7已验证
  */
 Status ListDelete(LinkList L, int i) {
@@ -138,6 +140,7 @@ Status ListDelete(LinkList L, int i) {
  * @details HOW TO USE : CreateList_H(&L, 结点个数);
  * @param L 头指针的指针
  * @param n 元素个数
+ * @note 平均时间复杂度为 O(n)
  * @note 2022/2/6已验证
  */
 void CreateList_H(LinkList *L, int n) {
@@ -159,6 +162,7 @@ void CreateList_H(LinkList *L, int n) {
  * @details HOW TO USE : CreateList_R(&L, 结点个数);
  * @param L 头结点
  * @param n 元素个数
+ * @note 平均时间复杂度为 O(n)
  * @note 2022/2/6已验证
  */
 void CreateList_R(LinkList *L, int n) {
