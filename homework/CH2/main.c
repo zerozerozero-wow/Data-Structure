@@ -1,3 +1,6 @@
+//#define MY_ANSWERS
+#define ANSWERS
+
 #include <stdio.h>
 #include <malloc.h>
 
@@ -21,33 +24,44 @@ typedef struct LNode {
  *      Status mergeList2(LinkList A, LinkList B);
  * 3.已知两个链表A和B分别表示两个集合，其元素递增排列。请设计一个算法，用于求出A与B的交集，
  * 并存放在A链表中。
- *
+ *      Status intersectList(LinkList A, LinkList B);
  * 4.已知两个链表A和B分别表示两个集合，其元素递增排列。请设计算法求出两个集合A和B的差集（
  * 即仅由在A中出现而不在B中出现的元素所构成的集合），并以同样的形式存储，同时返回该集合的元素
  * 个数。
- *
+ *      int differenceList(LinkList A, LinkList B, LinkList C);
  * 5.设计算法将一个带头结点的单链表A分解为两个具有相同结构的链表B和C，其中B表的结点为A中
  * 值小于零的结点，而C表中的结点为A表中值大于零的结点（链表A中的元素为非零整数，要求B、C表
  * 利用A表的结点
- *
+ *      Status decomposeList(LinkList A, LinkList B, LinkList C);
  * 6.设计一个算法，通过一趟遍历确定长度为n的单链表中值最大的结点
- *
+ *      int locateMaxNode(LinkList A);
  * 7.设计一个算法，将链表中所有结点的链接方向“原地”逆转，即要求仅利用原表的存储空间，换句话
  * 说，要求算法的空间复杂度为O(1)
- *
+ *      Status changeDirection(LinkList A);
  * 8.设计一个算法，删除递增有序链表中值大于 mink 且小于 maxk 的所有元素（mink 和 maxk 是
  * 给定的两个参数，其值可以和表中的元素相同，也可以不同）
- *
+ *      Status limitList(LinkList A, ElemType mink, ElemType maxk);
  * 9.已知 p 指向双向循环链表中的一个结点，其结点结构为 data、prior、next 三个域，写出算法
  * change(p)，交换 p 所指向的结点及其前驱节点的顺序
  *
  * 10.已知长度为n的线性表A采用顺序存储结构，请写一个时间复杂度为O（n）、空间复杂度为O（1）的
  * 算法，该算法可删除线性表中所有值为 item 的数据元素
+ *
  */
-
+#ifdef MY_ANSWERS
 Status mergeList1(LinkList A, LinkList B);
-
 Status mergeList2(LinkList A, LinkList B);
+Status intersectList(LinkList A, LinkList B);
+int differenceList(LinkList A, LinkList B, LinkList C);
+#endif
+
+#ifdef ANSWERS
+
+void mergeList1(LinkList La, LinkList Lb, LinkList *Lc);
+
+void mergeList2(LinkList La, LinkList Lb, LinkList *Lc);
+
+#endif
 
 int main() {
     int aTest[] = {1, 3, 3, 7, 9};
@@ -57,6 +71,8 @@ int main() {
     A->next = NULL;
     LinkList B = (LNode *) malloc(sizeof(LNode));
     B->next = NULL;
+    LinkList C = (LNode *) malloc(sizeof(LNode));
+    C->next = NULL;
 
     LNode *aTail = A;
     LNode *bTail = B;
@@ -77,10 +93,13 @@ int main() {
         bTail = q;
     }
 
-    mergeList2(A, B);
+    /* TEST FUNCTION */
+    mergeList2(A, B, &C);
 
     return 0;
 }
+
+#ifdef MY_ANSWERS
 
 /**
  * @brief 1.将两个递增的有序链表合并为一个递增的有序链表。要求结果链表仍使用原来两个链表的存储空间，
@@ -94,7 +113,7 @@ int main() {
  *          int bTest[] = {2, 4, 5, 8, 10};
  */
 Status mergeList1(LinkList A, LinkList B) {
-    /* pa and pb point to the first node of A and
+    /* pa and pb point to the head node of A and
      * the initial node of B respectively
      */
     LNode *pa = A;
@@ -129,16 +148,16 @@ Status mergeList1(LinkList A, LinkList B) {
 /**
  * @brief 2.将两个非递减的有序链表合并为一个非递增的有序链表。要求结果链表仍使用原来两个链表的存储空
  * 间，不另外占用其他的存储空间。表中允许有重复的数据。
- * @param A
- * @param B
- * @return
+ * @param A A链表头指针
+ * @param B B链表头指针
+ * @return OK 成功
  * @note 测试数据：
  *           int aTest[] = {1, 3, 3, 7, 9};
  *           int bTest[] = {3, 4, 8, 8, 10};
  * @note 合并后：10,9,8,8,7,4,3,3,3,1
  */
 Status mergeList2(LinkList A, LinkList B) {
-    /* pa and pb point to the first node of A and
+    /* pa and pb point to the head node of A and
      * the initial node of B respectively
      */
     LNode *pa = A;
@@ -181,4 +200,140 @@ Status mergeList2(LinkList A, LinkList B) {
     A->next = pa_next_next;
 
     return OK;
+}
+
+/**
+ * @brief 3.已知两个链表A和B分别表示两个集合，其元素递增排列。请设计一个算法，用于求出A与B的交集，
+ * 并存放在A链表中。
+ * @param A
+ * @param B
+ * @return
+ * @note 测试数据：
+ *          int aTest[] = {1, 3, 5, 8, 10};
+ *          int bTest[] = {0, 5, 8, 10, 13};
+ * @note 输出：5, 8, 10
+ */
+Status intersectList(LinkList A, LinkList B) {
+    LNode *pa = A;          //point to the head node
+    LNode *pb = B->next;    //point to the initial node
+
+    while(pa->next){
+        while(pb){
+            if(pa->next->data == pb->data){
+                pa = pa->next;
+                break;
+            }
+            pb = pb->next;
+        }
+
+        if(!pb)     //if not find in B
+            pa->next = pa->next->next;
+        pb=B->next; //reset the pb
+    }
+    return OK;
+}
+
+/**
+ * @brief 4.已知两个链表A和B分别表示两个集合，其元素递增排列。请设计算法求出两个集合A和B的差集（
+ * 即仅由在A中出现而不在B中出现的元素所构成的集合），并以同样的形式存储，同时返回该集合的元素
+ * 个数。
+ * @param A 链表A的头指针
+ * @param B 链表B的头指针
+ * @param C 将要存放结果的链表的头指针
+ * @return 结果集合的元素的个数
+ * @note 测试数据：
+ * @note    int aTest[] = {0, 3, 5, 8, 9};
+ *          int bTest[] = {3, 5, 9, 10, 13};
+ * @note 返回：{0, 8},2
+ */
+int differenceList(LinkList A, LinkList B, LinkList C) {
+    LNode *pa = A->next;
+    LNode *pb = B->next;
+    LNode *pc = C;
+    int num = 0;
+
+    pos1:
+    while(pa){
+        while (pb){
+            if(pa->data == pb->data){
+                pb = B->next;
+                pa = pa->next;
+                goto pos1;
+            }
+            pb = pb->next;
+        }
+        pb = B->next;
+        pc->next = (LNode *) malloc(sizeof(LNode));
+        pc->next->next = NULL;
+        pc->next->data = pa->data;
+        pc = pc->next;
+        num++;
+        pa = pa->next;
+    }
+    return num;
 };
+
+#endif
+
+
+/* answers */
+#ifdef ANSWERS
+
+void mergeList1(LinkList La, LinkList Lb, LinkList *Lc) {
+    LNode *pa = La->next;
+    LNode *pb = Lb->next;
+    *Lc = La;
+    LNode *pc = *Lc;
+
+    while (pa && pb) {
+        if (pa->data < pb->data) {
+            pc->next = pa;
+            pc = pa;
+            pa = pa->next;
+        } else if (pa->data > pb->data) {
+            pc->next = pb;
+            pc = pb;
+            pb = pb->next;
+        } else {
+            pc->next = pa;
+            pc = pa;
+            pa = pa->next;
+            LNode *q = pb->next;
+            free(pb);
+            pb = q;
+        }
+    }
+    pc->next = pa ? pa : pb;
+    free(Lb);
+}
+
+void mergeList2(LinkList La, LinkList Lb, LinkList *Lc) {
+    LNode *pa = La->next;
+    LNode *pb = Lb->next;
+    *Lc = La;
+    LNode *pc = *Lc;
+
+    (*Lc)->next = NULL;
+    while (pa || pb) {
+        LNode *q = NULL;
+        if (!pa) {
+            q = pb;
+            pb = pb->next;
+        } else if (!pb) {
+            q = pa;
+            pa = pa->next;
+        } else if (pa->data <= pb->data) {
+            q = pa;
+            pa = pa->next;
+        } else {
+            q = pb;
+            pb = pb->next;
+        }
+        q->next = (*Lc)->next;
+        (*Lc)->next = q;
+    }
+    free(Lb);
+};
+
+
+#endif
