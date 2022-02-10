@@ -61,11 +61,25 @@ void mergeList1(LinkList La, LinkList Lb, LinkList *Lc);
 
 void mergeList2(LinkList La, LinkList Lb, LinkList *Lc);
 
+void mixList(LinkList La, LinkList Lb, LinkList *Lc);
+
+void differenceList(LinkList La, LinkList Lb, int *n);
+
+void discomposeList(LinkList A, LinkList *B, LinkList *C);
+
+ElemType maxNodeInList(LinkList L);
+
+void inverseList(LinkList L);
+
+void limitList(LinkList L, int mink, int maxk);
+
+void deleteItem(ElemType A[], int n, ElemType item);
+
 #endif
 
 int main() {
-    int aTest[] = {1, 3, 3, 7, 9};
-    int bTest[] = {3, 4, 8, 8, 10};
+    int aTest[] = {1, 3, 5, 7, 9};
+    int bTest[] = {3, 4, 8, 9, 10};
 
     LinkList A = (LNode *) malloc(sizeof(LNode));
     A->next = NULL;
@@ -94,7 +108,8 @@ int main() {
     }
 
     /* TEST FUNCTION */
-    mergeList2(A, B, &C);
+    int n;
+    differenceList(A, B, &n);
 
     return 0;
 }
@@ -333,7 +348,155 @@ void mergeList2(LinkList La, LinkList Lb, LinkList *Lc) {
         (*Lc)->next = q;
     }
     free(Lb);
-};
+}
 
+void mixList(LinkList La, LinkList Lb, LinkList *Lc) {
+    LNode *pa = La->next;
+    LNode *pb = Lb->next;
+    *Lc = La;
+    LNode *pc = *Lc;
+    LNode *u = NULL;
+    while (pa && pb) {
+        if (pa->data == pb->data) {
+            pc->next = pa;
+            pc = pa;
+            pa = pa->next;
+            u = pb;
+            pb = pb->next;
+            free(u);
+        } else if (pa->data < pb->data) {
+            u = pa;
+            pa = pa->next;
+            free(u);
+        } else {
+            u = pb;
+            pb = pb->next;
+            free(u);
+        }
+    }
+    while (pa) {
+        u = pa;
+        pa = pa->next;
+        free(u);
+    }
+    while (pb) {
+        u = pb;
+        pb = pb->next;
+        free(u);
+    }
+    pc->next = NULL;
+    free(Lb);
+}
+
+void differenceList(LinkList La, LinkList Lb, int *n) {
+    LNode *pa = La->next;
+    LNode *pb = Lb->next;
+    LNode *pre = La;
+    while (pa && pb) {
+        if (pa->data < pb->data) {
+            pre = pa;
+            pa = pa->next;
+            (*n)++;
+        } else if (pa->data > pb->data) {
+            pb = pb->next;
+        } else {
+            pre->next = pa->next;
+            LNode *u = pa;
+            pa = pa->next;
+            free(u);
+        }
+    }
+}
+
+void discomposeList(LinkList A, LinkList *B, LinkList *C) {
+    LNode *p = A->next;
+    *B = A;
+    (*B)->next = NULL;
+    (*C)->next = NULL;
+
+    while (p != NULL) {
+        LNode *r = p->next;
+        if (p->data < 0) {
+            p->next = (*B)->next;
+            (*B)->next = p;
+        } else {
+            p->next = (*C)->next;
+            (*C)->next = p;
+        }
+        p = r;
+    }
+}
+
+ElemType maxNodeInList(LinkList L) {
+    if (L->next == NULL)return ERROR;
+    LNode *pmax = L->next;
+    LNode *p = L->next->next;
+    while (p != NULL) {
+        if (p->data > pmax->data)
+            pmax = p;
+        p = p->next;
+    }
+    return pmax->data;
+}
+
+void inverseList(LinkList L) {
+    LNode *p = L->next;
+    L->next = NULL;
+
+    LNode *q = NULL;
+    while (p) {
+        q = p->next;
+        p->next = L->next;
+        L->next = p;
+        p = q;
+    }
+}
+
+void limitList(LinkList L, int mink, int maxk) {
+    LNode *p = L->next;
+    LNode *q = NULL;
+    LNode *pre = NULL;
+    while (p && p->data <= mink) {
+        pre = p;
+        p = p->next;
+    }
+    if (p) {
+        while (p && p->data < maxk)
+            p = p->next;
+        q = pre->next;
+        pre->next = p;
+        while (q != p) {
+            LNode *s = q->next;
+            free(q);
+            q = s;
+        }
+    }
+}
+
+/**
+ * answer9
+ * void change(p){
+ *      q=p->llink;
+ *      q->llink->rlink=p;      //p的前驱的前驱之后继为p
+ *      p->llink=q->llink;      //p的前驱指向其前驱的前驱
+ *      q->rlink=p->rlink;      //p的前驱的后继为p的后继
+ *      q->llink=p;             //p与其前驱交换
+ *      p->rlink->llink=q;      //p的后继的前驱指向原p的前驱
+ *      p->rlink=q;             //p的后继指向其原来的前驱
+ * }
+ */
+
+void deleteItem(ElemType *A, int n, ElemType item) {
+    int i = 1, j = n;
+    while (i < j) {
+        while (i < j && A[i] != item)
+            i++;
+        if (i < j) {
+            while (i < j && A[j] == item)
+                j--;
+        }
+        if (i < j) A[i++] = A[j--];
+    }
+}
 
 #endif
