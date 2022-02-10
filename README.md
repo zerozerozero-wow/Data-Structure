@@ -11,6 +11,6 @@ This repository stores learning notes about data structures
 │  └─Src	#.c
 └─sequential_list	#顺序表
 
-
+j
 ```
 
