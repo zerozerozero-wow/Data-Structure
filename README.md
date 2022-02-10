@@ -10,5 +10,7 @@ This repository stores learning notes about data structures
 │  ├─Inc	#.h
 │  └─Src	#.c
 └─sequential_list	#顺序表
+
+
 ```
 
