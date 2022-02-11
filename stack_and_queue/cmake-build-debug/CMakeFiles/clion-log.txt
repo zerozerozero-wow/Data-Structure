@@ -1,0 +1,4 @@
+D:\Software\Toolbox\apps\CLion\ch-0\213.6777.58\bin\cmake\win\bin\cmake.exe -DCMAKE_BUILD_TYPE=Debug -DCMAKE_MAKE_PROGRAM=D:/Software/Toolbox/apps/CLion/ch-0/213.6777.58/bin/ninja/win/ninja.exe -G Ninja D:\Documents\Projects\Data_structure\stack_and_queue
+-- Configuring done
+-- Generating done
+-- Build files have been written to: D:/Documents/Projects/Data_structure/stack_and_queue/cmake-build-debug
