@@ -1,9 +1,12 @@
 #ifndef STACK_AND_QUEUE_SEQUENTIAL_STACK_H
 #define STACK_AND_QUEUE_SEQUENTIAL_STACK_H
 
-/* 顺序栈的存储结构 */
 #define Status int
 #define OK 1
+#define OVERFLOW -1
+#define ERROR 0
+
+/* 顺序栈的存储结构 */
 #define SElemType int
 #define MAXSIZE 100         //顺序栈存储空间的初始分配量
 typedef struct {

@@ -116,7 +116,7 @@
 		{
 			"backtrace" : 1,
 			"compileGroupIndex" : 0,
-			"path" : "Inc/sequential_stack.c",
+			"path" : "Src/sequential_stack.c",
 			"sourceGroupIndex" : 0
 		},
 		{
