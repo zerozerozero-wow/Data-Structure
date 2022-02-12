@@ -267,3 +267,15 @@ void MergeList_L(LinkList LA, LinkList LB, LinkList *LC) {
     pc->next = pa?pa:pb;
     free(LB);
 }
+
+/**
+ * @brief 递归输出链表中个结点的值
+ * @param p 头指针
+ */
+void TraverseList(LinkList p) {
+    if(p == NULL) return;
+    else{
+        printf("%d",p->data);
+        TraverseList(p->next);
+    }
+}
