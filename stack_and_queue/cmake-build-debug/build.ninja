@@ -79,6 +79,12 @@ build CMakeFiles/stack_and_queue.dir/Src/linked_stack.c.obj: C_COMPILER__stack_a
   OBJECT_DIR = CMakeFiles\stack_and_queue.dir
   OBJECT_FILE_DIR = CMakeFiles\stack_and_queue.dir\Src
 
+build CMakeFiles/stack_and_queue.dir/Src/sequential_queue.c.obj: C_COMPILER__stack_and_queue_Debug D$:/Documents/Projects/Data_structure/stack_and_queue/Src/sequential_queue.c || cmake_object_order_depends_target_stack_and_queue
+  DEP_FILE = CMakeFiles\stack_and_queue.dir\Src\sequential_queue.c.obj.d
+  FLAGS = -g -std=gnu99
+  OBJECT_DIR = CMakeFiles\stack_and_queue.dir
+  OBJECT_FILE_DIR = CMakeFiles\stack_and_queue.dir\Src
+
 
 # =============================================================================
 # Link build statements for EXECUTABLE target stack_and_queue
@@ -87,7 +93,7 @@ build CMakeFiles/stack_and_queue.dir/Src/linked_stack.c.obj: C_COMPILER__stack_a
 #############################################
 # Link the executable stack_and_queue.exe
 
-build stack_and_queue.exe: C_EXECUTABLE_LINKER__stack_and_queue_Debug CMakeFiles/stack_and_queue.dir/main.c.obj CMakeFiles/stack_and_queue.dir/Src/sequential_stack.c.obj CMakeFiles/stack_and_queue.dir/Src/linked_stack.c.obj
+build stack_and_queue.exe: C_EXECUTABLE_LINKER__stack_and_queue_Debug CMakeFiles/stack_and_queue.dir/main.c.obj CMakeFiles/stack_and_queue.dir/Src/sequential_stack.c.obj CMakeFiles/stack_and_queue.dir/Src/linked_stack.c.obj CMakeFiles/stack_and_queue.dir/Src/sequential_queue.c.obj
   FLAGS = -g
   LINK_LIBRARIES = -lkernel32 -luser32 -lgdi32 -lwinspool -lshell32 -lole32 -loleaut32 -luuid -lcomdlg32 -ladvapi32
   OBJECT_DIR = CMakeFiles\stack_and_queue.dir
