@@ -5,3 +5,4 @@
 *.log
 homework/CH2/cmake-build-debug/Testing/Temporary/LastTest.log
 *.ninja
+*.ninja
